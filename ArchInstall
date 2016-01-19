@@ -74,7 +74,7 @@ EDITOR=nano visudo
 
 sudo nano /etc/pacman.conf (opens your pacman config file)
   * uncomment multilib both lines (not testing) then 2 lines below add the following:
-    archlinuxfr (enclose this in brackets-Youtube would not let me post brackets)
+    [archlinuxfr]
     SigLevel = Never
     Server = http://repo.archlinux.fr/$arch
    * then control-o to save, then enter, then control-x to exit back to command line.
