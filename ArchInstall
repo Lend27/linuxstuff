@@ -4,6 +4,8 @@ Install Plain Vanilla Arch
 that boots from that drive. In this case you do not need to install grub to your new Arch install. You will just need to boot 
 into your prime distro and run "os-prober" and "update-grub". 
 
+IF YOU ARE USING YOUR ETHERNET CONNECTION TO DO THIS INSTALL, MAKE SURE IT IS CONNECTED BEFORE YOU BOOT INTO YOUR INSTALL USB.
+
 Download Arch - Copy to USB using in terminal: (rename downloaded iso to "arch")
 
 sudo dd bs=4M if=arch.iso of=/dev/sxx  (xx=your device name)
@@ -29,7 +31,7 @@ nano /etc/locale.gen (opens locale.gen file)
 
 locale-gen (generates your locale config file.
 
-echo LANG=en_US.UTF-8 >/etc/locale.conf  (writes your locale.conf file and saves)
+echo LANG=en_US.UTF-8 > /etc/locale.conf  (writes your locale.conf file and saves)
 
 ln -sf /usr/share/zoneinfo/EST5EDT /etc/localtime  (this is my timezone. Substitute your info after zoneinfo)
 
@@ -52,7 +54,7 @@ exit
 
 umount -R /mnt
 
-reboot (when you boot into your main distro, run os-prober and update-grub)
+reboot (when you boot into your main distro, run os-prober and update-grub to make your new arch install appear in your grub list)
 
 Note: sign in as root with your new password
 
@@ -74,10 +76,14 @@ EDITOR=nano visudo
 
 sudo nano /etc/pacman.conf (opens your pacman config file)
   * uncomment multilib both lines (not testing) then 2 lines below add the following:
-    [archlinuxfr]
+    archlinuxfr (enclose this in brackets-Youtube would not let me post brackets)
     SigLevel = Never
     Server = http://repo.archlinux.fr/$arch
    * then control-o to save, then enter, then control-x to exit back to command line.
+
+sudo pacman -Syyu
+
+sudo pacman -S yaourt
 
 sudo pacman -S multilib-devel fakeroot git jshon wget make pkg-config autoconf automake patch
 
@@ -93,11 +99,21 @@ sudo pacman -S xorg-server xorg-xinit xorg-server-utils mesa
 
 sudo pacman -S nvidia lib32-nvidia-utils (assuming you have nvidia gaphics)
 
-reboot
-
 sudo nvidia-xconfig
 
-wifi-menu (should find your wifi network, then connect to your network)
+yaourt -S broadcom-wl  (only if you have a broadcom wifi card installed)
+
+reboot
+
+sudo systemctl enable NetworkManager
+
+sudo systemctl start NetworkManager.service
+
+ip link  (note your wifi interface device name if it is not already configured i.e. broadcom)
+
+sudo systemctl enable dhcpcd@(device name).service
+
+sudo wifi-menu (should find your wifi network, then connect to your network)
 
 sudo pacman -S xorg-twm xorg-xclock xterm
 
@@ -109,23 +125,13 @@ sudo systemctl enable lxdm.service
 
 sudo systemctl start lxdm.service
 
-sudo systemctl enable NetworkManager
 
-sudo systemctl start NetworkManager.service
-   *reboot into LXDM login screen. Once at login screen select your preferred desktop 
-    from the dropdown list on the lowerleft.
+*****reboot into LXDM login screen. Once at login screen select your preferred desktop 
+    from the dropdown list on the lowerleft. (LXDE and XFCE should be listed.)
 
 sudo pacman -S gvfs (to show all mounted devices)
 
-sudo pacman -S file-roller unrar p7zip pulseaudio pulseaudio-alsa
- 
-sudo pacman -S package-query
-
-sudo pacman -S yaourt
-
-sudo pacman -S volti (puts a volume control in your systray) make sure you set it to autostart.
-
-yaourt -S flashplugin hal-flash
+sudo pacman -S file-roller unrar p7zip pulseaudio pulseaudio-alsa pavucontrol
 
 Enjoy Arch Linux!
 
