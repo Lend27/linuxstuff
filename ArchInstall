@@ -1,0 +1,152 @@
+Install Plain Vanilla Arch
+=========================
+1. These install instructions assume that you already have your partition designated and already have another Linux distro 
+that boots from that drive. In this case you do not need to install grub to your new Arch install. You will just need to boot 
+into your prime distro and run "os-prober" and "update-grub". 
+
+IF YOU ARE USING YOUR ETHERNET CONNECTION TO DO THIS INSTALL, MAKE SURE IT IS CONNECTED BEFORE YOU BOOT INTO YOUR INSTALL USB.
+IF YOU NEED TO USE WIFI, AFTER YOU BOOT INTO YOUR USB, TYPE "wifi-menu" AT THE COMMAND LINE TO SEE IF YOUR WIFI IS RECOGNIZED.
+IF IT IS, YOU WILL BE ABLE TO SELECT YOUR NETWORK, AND ENTER YOUR WIFI PASSWORD TO CONNECT.
+
+Download Arch - Copy to USB using in terminal: (rename downloaded iso to "arch" - right click the iso file, then select "rename"
+
+sudo dd bs=4M if=arch.iso of=/dev/sxx  (xx=your device name)
+
+Once done copying, reboot (go into bios and select to boot from USB)
+
+Once booted you will already be logged in as root.
+
+In terminal run the following commands in order:
+
+mkfs.ext4 /dev/sxx   (change xx to your install device)
+
+mount /dev/sxx /mnt  (this mounts the install partition)
+
+pacstrap -i /mnt base base-devel  (installs the base arch system)
+
+genfstab -U /mnt > /mnt/etc/fstab  (generates your fstab file)
+
+arch-chroot /mnt /bin/bash  (enables you to modify the files in config of your system)
+
+nano /etc/locale.gen (opens locale.gen file)
+  * once the file is open, uncomment your country entries. Then ctrl-o then enter to save. Then control-x to exit.
+
+locale-gen (generates your locale config file.)
+
+echo LANG=en_US.UTF-8 > /etc/locale.conf  (writes your locale.conf file and saves)
+
+ln -sf /usr/share/zoneinfo/EST5EDT /etc/localtime  (this is my timezone. Substitute your info after zoneinfo)
+
+hwclock --systohc --utc
+
+mkinitcpio -p linux
+
+echo "pick your hostname" > /etc/hostname
+
+ip link (lists your network devices) (if your wifi device is listed, you may use that for install)
+
+systemctl enable dhcpcd@"your eth device name".service (if using ethernet)
+systemctl enable dhcpcd@"your wifi device name".service  (if using wifi)
+
+pacman -S dialog iw networkmanager network-manager-applet gnome-keyring
+
+passwd (you will now set the root password)
+ * enter password twice
+
+exit
+
+umount -R /mnt
+
+reboot (when you boot into your main distro, run os-prober and update-grub to make your new arch install appear in your grub list)
+
+Note: sign in as root with your new password
+
+commands:
+
+useradd -m -g users -s /bin/bash (your new user name)
+
+passwd (your new user name)
+   * enter password twice
+
+pacman -S sudo
+
+EDITOR=nano visudo
+  *sudoers file will open.scroll down below "user privelege specification". 
+   Under the root line add another line
+   to read same as the root line but with your new user name. Example: len  ALL=(ALL) ALL
+   Cotrol-o to save, then enter, then control-x to exit.
+   *logout as root, then login as your new user.
+
+sudo nano /etc/pacman.conf (opens your pacman config file)
+  * uncomment multilib both lines (not testing) then 2 lines below add the following:
+    archlinuxfr (enclose this in brackets-Youtube would not let me post brackets)
+    SigLevel = Never
+    Server = http://repo.archlinux.fr/$arch
+   * then control-o to save, then enter, then control-x to exit back to command line.
+
+sudo pacman -Syyu
+
+sudo pacman -S yaourt
+
+sudo pacman -S multilib-devel fakeroot git jshon wget make pkg-config autoconf automake patch
+
+sudo pacman -S alsa-utils
+
+alsamixer 
+    * (entering the letter M mutes and unmutes the channels. Mute the channels you don't need and set the 
+       levels of the ones you need. Then "escape" to exit
+
+speaker-test -c 2 (assuming you have 2 speakers.) (IF SPEAKER TEST FAILS, MOVE ON TO NEXT STEP. YOU CAN FIX AFTER INSTALL)
+
+sudo pacman -S xorg-server xorg-xinit xorg-server-utils mesa
+
+sudo pacman -S nvidia lib32-nvidia-utils (assuming you have nvidia gRaphics)
+
+sudo nvidia-xconfig 
+
+yaourt -S broadcom-wl  (only if you have a broadcom wifi card installed)
+
+reboot
+
+sudo systemctl enable NetworkManager
+
+sudo systemctl start NetworkManager.service
+
+ip link  (note your wifi interface device name if it is not already configured i.e. broadcom)
+
+sudo systemctl enable dhcpcd@(device name).service (SELECT EITHER YOUR WIFI OR ETHERNET DEVICE)
+
+sudo wifi-menu (should find your wifi network, then connect to your network)
+
+sudo pacman -S xorg-twm xorg-xclock xterm
+
+startx (you should see 3 open windows. (hover your mouse over each one at a time and type exit to close all 3)
+
+sudo pacman -S lxdm lxde xfce4 xfce4-goodies
+
+sudo systemctl enable lxdm.service
+
+sudo systemctl start lxdm.service
+
+
+*****reboot into LXDM login screen. Once at login screen select your preferred desktop 
+    from the dropdown list on the lowerleft. (LXDE and XFCE should be listed.)
+
+sudo pacman -S gvfs (to show all mounted devices)
+
+sudo pacman -S xdg-user-dirs  ( TO CREATE YOUR USER FOLDERS, I.E PICTURES, VIDEOS, DOCUMENTS, ETC)
+
+sudo pacman -S file-roller unrar p7zip pulseaudio pulseaudio-alsa pavucontrol
+
+Enjoy Arch Linux!
+
+<END>
+ 
+
+
+
+
+
+
+
+
