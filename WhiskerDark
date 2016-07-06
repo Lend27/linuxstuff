@@ -1,0 +1,47 @@
+Whisker Menu Dark Theme:
+
+save in ~/.gtkrc-2.0
+
+
+style "mydarktheme"
+{
+base[NORMAL] = "#2B2B2B"
+base[ACTIVE] = "#606060"
+text[NORMAL] = "#ccc"
+text[ACTIVE] = "#fff"
+bg[NORMAL] = "#2B2B2B"
+bg[ACTIVE] = "#606060"
+bg[PRELIGHT] = "#808080"
+bg[SELECTED] = "#606060"
+fg[NORMAL] = "#ccc"
+fg[ACTIVE] = "#fff"
+fg[PRELIGHT] = "#fff"
+}
+widget "whiskermenu-window*" style "mydarktheme"
+
+
+DarkBack Theme:
+
+style "darkback"
+{
+	bg[NORMAL] = "#404040"
+	bg[ACTIVE] = "#606060"
+	bg[PRELIGHT] = "#808080"
+	fg[NORMAL] = "#ccc"
+	fg[ACTIVE] = "#fff"
+	fg[PRELIGHT] = "#fff"
+}
+widget "whiskermenu-window*" style "darkback"
+
+
+All Dark Theme:
+
+style "darktree"
+{
+	base[NORMAL] = "#404040"
+	base[ACTIVE] = "#606060"
+	text[NORMAL] = "#ccc"
+	text[ACTIVE] = "#fff"
+}
+widget "whiskermenu-window*TreeView*" style "darktree"
+
