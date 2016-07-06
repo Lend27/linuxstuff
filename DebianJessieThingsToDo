@@ -1,0 +1,92 @@
+THINGS TO DO AFTER INSTALLING DEBIAN JESSIE:
+
+
+ADD TO SUDOERS FILE: 
+open leafpad as root
+ /etc/sudoers
+username  ALL = (ALL) ALL
+
+
+FIREWALL:
+
+sudo apt-get install gufw
+
+Enable 32bit Architecture:
+sudo dpkg --add-architecture i386
+
+sudo apt-get update
+sudo apt-get install netselect-apt
+
+sudo netselect-apt
+
+COPY RESULTING SOURCES TO SOURCES.LIST
+
+ADD CONTRIB AND NON-FREE TO SOURCES
+
+Add deb-multimedia to sources
+
+
+RUN : sudo apt-get update
+
+
+sudo apt-get install gdebi gksu firmware-linux firmware-linux-nonfree intel-microcode
+
+
+DRIVERS:
+
+sudo apt-get install nvidia-driver nvidia-settings nvidia-xconfig
+
+sudo nvidia-xconfig
+
+*** REBOOT to enable Nvidia drivers
+
+
+sudo apt-get install psensor clipit redshift caffeine smplayer kodi openshot shotwell rapid-photo-downloader
+
+EXTRA SCREENSAVERS:
+
+sudo apt-get install xscreensaver xscreensaver-gl
+
+
+Install Wine etc.:
+
+
+sudo apt-get install wine playonlinux
+
+
+Enable flash in iceweasel:      sudo apt-get install flashplugin-nonfree  
+
+Enable flash in Chromium:    sudo apt-get install pepperflashplugin-nonfree
+
+Enable Java applets:     sudo apt-get install icedtea-plugin
+
+
+APPLICATIONS:
+
+sudo apt-get install file-roller rar unrar 
+
+
+FOR XFCE:
+
+sudo apt-get install pavucontrol    (Pulseaudio volume control)
+
+ADD THEME SOURCES:
+
+
+Install Arc-themes
+
+sudo apt-get install faenza-icon-theme
+
+FONTS:
+
+sudo apt-get install ttf-freefont ttf-bitstream-vera ttf-dejavu ttf-liberation
+
+
+Cleanup desktop/panel
+
+Add themes/icons
+
+Change wallpaper
+
+
+
