@@ -1,0 +1,41 @@
+Install wine and winetricks
+Arch: sudo pacman -S wine winetricks
+Ubuntu/Debian: sudo apt-get install wine winetricks
+
+Install Core TTF Fonts from Microsoft
+Arch:
+yaourt -S ttf-ms-fonts
+
+Debian/Ubuntu:
+sudo apt-get install ttf-mscorefonts-installer
+
+Extra audio and video files to install if you are using Arch or Manjaro: 
+sudo pacman -S lib32-libldap
+sudo pacman -S lib32-nvidia-utils lib32-nvidia-libgl (if you have Nvidia card)
+sudo pacman -S lib32-alsa-lib lib32-alsa-plugins lib32-libpulse lib32-alsa-oss lib32-openal
+
+NOTE: Reboot may be necessary for changes to take effect.
+
+Alternatively you can install corefonts using winetricks:
+
+type at command line: 
+winetricks corefonts
+
+Then type at command line:
+winetricks vcrun2015
+
+Alternatively you can add the libraries individually to wine:
+
+Open winecfg. Go to Libraries tab and add libraries with default (native, builtin) setting
+api-ms-win-crt-runtime-l1-1-0.dll
+api-ms-win-crt-stdio-l1-1-0.dll
+ucrtbase.dll
+vcruntime140.dll
+
+Download and install Battle.net app
+Right click on downloaded file and select install using Wine File Installer
+
+
+
+Download latest Battle.net installer
+Install Battle.net (right click file and select Wine Installer)
