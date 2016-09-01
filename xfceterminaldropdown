@@ -1,0 +1,9 @@
+xfce4-terminal --drop-down
+
+Shortcut: Settings Manager > Keyboard > Application Keyboard Shortcuts). 
+
+
+The command bellow will add F4 as the key to summon the terminal; you can edit it to use any other key.
+
+
+xfconf-query -c xfce4-keyboard-shortcuts -p /commands/custom/F4 -n -t string -s "xfce4-terminal --drop-down"
