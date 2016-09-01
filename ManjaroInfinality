@@ -1,0 +1,93 @@
+Manjaro Infinality Fonts:
+
+sudo leafpad /etc/pacman.conf
+
+add to end of file:
+
+[infinality-bundle]
+Server = http://bohoomil.com/repo/$arch
+
+
+sudo pacman-key -r 962DDE58
+
+sudo pacman-key --lsign-key 962DDE58
+
+sudo pacman -Syy
+
+sudo pacman -S infinality-bundle
+
+Steps to configure font rendering
+
+cd /etc/fonts/conf.d/
+
+sudo ln -s ../conf.avail/11-lcdfilter-default.conf
+
+Fonts & Hinting
+You may choose different font as per your preference and may use "slight or full" hinting depending on your preference.
+
+Xfce
+
+Go to Settings -> Appearance -> Fonts
+
+
+MATE
+
+System -> Preferences -> Look & Feel -> Appearance
+
+
+Infinality - Custom Styles (Optional)
+
+sudo cp /usr/share/doc/freetype2-infinality-ultimate/infinality-settings.sh /etc/X11/xinit/xinitrc.d/
+
+sudo leafpad /etc/X11/xinit/xinitrc.d/infinality-settings.sh
+
+In that file you can see that 2 levels of customization are available.
+
+A set of 7 preconfigured styles selectable by name.
+You can create your own custom style.
+In this tutorial, we are going to see only the first level customization, which is changing the preconfigured styles.
+
+### Available styles:
+### ultimate1 <> extra sharp
+### ultimate2 <> sharper & lighter ultimate
+### ultimate3 <> ultimate: well balanced (default)
+### ultimate4 <> darker & smoother
+### ultimate5 <> darkest & heaviest ("MacIsh")
+### osx       <> Apple OS X
+### windowsxp <> MS Windows XP
+
+### If you want to use a style from the list, uncomment the variable below
+### and set its name as the value.
+
+
+#export INFINALITY_FT="ultimate3"
+We have to uncomment the last line, i.e. remove the # symbol before the export INFINALITY_FT="ultimate3", 
+
+### Available styles:
+### ultimate1 <> extra sharp
+### ultimate2 <> sharper & lighter ultimate
+### ultimate3 <> ultimate: well balanced (default)
+### ultimate4 <> darker & smoother
+### ultimate5 <> darkest & heaviest ("MacIsh")
+### osx       <> Apple OS X
+### windowsxp <> MS Windows XP
+
+### If you want to use a style from the list, uncomment the variable below
+### and set its name as the value.
+
+
+export INFINALITY_FT="ultimate3"
+Now you can choose either of the styles available which are,
+
+ultimate1
+ultimate2
+ultimate3
+ultimate4
+ultimate5
+osx
+windowsxp
+so, if you want to use extra sharp fonts, then the export option should look like the following,
+
+export INFINALITY_FT="ultimate1"
+
+Reboot to see the new font rendering.
