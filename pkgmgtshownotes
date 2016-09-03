@@ -1,0 +1,21 @@
+pkg mgt show notes:
+
+Installing pacaur (yaourt helper)
+Install the key:
+sudo gpg --recv-keys --keyserver hkp://pgp.mit.edu 1EB2638FF56C0C53
+Install pacaur:
+yaourt -S cower-git pacaur-git
+Pacaur usage:
+pacaur -S <package names>
+
+Downgrading a package:
+yaourt -S downgrade
+sudo pacman -S expac
+Command to see recent upgraded packages:
+expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort | tail -50
+sudo downgrade <package name>  Then pick the version you want to roll back to.
+
+Links:
+https://wiki.archlinux.org/index.php/list_of_applications
+https://wiki.manjaro.org/index.php?title=Pacman_Tips
+https://www.youtube.com/watch?v=_ZXcmYIUk-s
