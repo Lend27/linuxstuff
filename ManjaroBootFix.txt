@@ -1,0 +1,15 @@
+﻿Ok got Manjaro booting again.The error during boot was "end kernal panic not syncing.
+
+This fixed it.
+https://forum.manjaro.org/t/restore-manjaro-boot/3350
+
+You know how you mentioned Manjaro likes to control the Grub boot menu in a previous video, it is true.
+
+From the Xubuntu grub boot menu if you type 'c' you get the grub prompt grub >. From the prompt type the commands in the link and it makes Manjaro's grub boot menu come up. So after booting Manjaro from the command prompt you can run the update grub command and it will restore Manjaro grub boot menu where you can boot Manjaro or Xubuntu.
+
+Should work if you install additional Linux distros. along side Manjaro and Xubuntu.
+
+Regarding the usb wi-fi adaptor, when I type mhwd -li -d to list installed drives I get, no installed configs for usb devices found. So looks like no drivers for the usb wi-fi adaptor installed. Xubuntu installed the Realtek rtl8712u driver, Windows 10 the rtl8191su driver. Will try and work this out.﻿
+Show less
+
+
