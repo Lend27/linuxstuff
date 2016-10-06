@@ -1,0 +1,28 @@
+Tweaking LXDE desktop:
+
+Center new windows:
+
+paste just above next to last line of "~/.config/openbox/lubuntu-rc.xml" file
+
+    <application type="normal">
+      <position>
+        <x>center</x>
+        <y>center</y>
+      </position>
+    </application>
+
+Add launchers to panel:
+
+right click on existing app icon in panel and select "Application Launch bar Settings"
+
+
+Select apps in right column and click "add"
+then reposition with arrows if necessary.
+
+Or add "App Launch Bar" to panel and then same as above.
+
+************************************************************************************
+
+Install "obconf" for more config options:  sudo pacman -S obconf
+
+Install themes:  sudo pacman -S openbox-themes
