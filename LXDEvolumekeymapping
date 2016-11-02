@@ -1,0 +1,43 @@
+Create LXDE Fn Key Shortcut for Volume on Archlinux
+
+By default, if you using LXDE desktop environment, you can brightness/volume up or down using Fn + Key. To make
+these key work on LXDE you must edit some file.
+
+Open File Manager , show hidden files.
+open .config/openbox/lxde-rc.xml with text editor.
+
+
+
+Then add this code before </keyboard> line:
+
+<keybind key="XF86AudioRaiseVolume">
+      <action name="Execute">
+        <command>amixer set Master 5%+ unmute</command>
+      </action>
+    </keybind>
+<keybind key="XF86AudioLowerVolume">
+      <action name="Execute">
+        <command>amixer set Master 5%- unmute</command>
+      </action>
+    </keybind>
+<keybind key="XF86MonBrightnessDown">
+      <action name="Execute">
+        <command>xbacklight -20</command>
+        <startupnotify>
+          <enabled>yes</enabled>
+          <name>Decrease screen brightness</name>
+        </startupnotify>
+      </action>
+    </keybind>
+<keybind key="XF86MonBrightnessUp">
+      <action name="Execute">
+        <command>xbacklight +20</command>
+        <startupnotify>
+          <enabled>yes</enabled>
+          <name>Increase screen brightness</name>
+        </startupnotify>
+      </action>
+    </keybind>
+
+Save, logout, and login again, then test it out.
+
