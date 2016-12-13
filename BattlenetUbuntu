@@ -1,0 +1,44 @@
+Ubuntu 16.10 BattleNet Install Procedure:
+
+1.update and upgrade
+sudo apt-get update
+sudo apt-get upgrade
+
+2.enable 32bit:
+dpkg --add-architecture i386
+
+3.sudo apt-get update
+
+4.Install 32 bit libraries
+sudo apt-get install libc6:i386 libstdc++6:i386
+
+5.install proprietary video drivers
+
+6.install codecs:
+sudo apt-get install ubuntu-restricted-extras
+note: (ttf-mscorefonts-installer is required but installed via ubuntu-restricted-extras)
+sudo apt-get install ttf-mscorefonts-installer (to verify install)
+
+7.sudo apt-get install vlc  (pulls in more codecs by default)
+
+8. Install wine-development and winetricks
+sudo apt-get install wine-development winetricks
+
+9.winetricks corefonts
+
+10.winetricks vcrun2015
+
+11. Verify libraries 
+winecfg
+
+add libraries:
+
+api-ms-win-crt-runtime-l1-1-0.dll
+api-ms-win-crt-stdio-l1-1-0.dll
+ucrtbase.dll
+vcruntime140.dll
+d3dcompiler_47  (for diablo3)
+
+set to Windows Vista
+
+right click on exe file, then select wine installer
