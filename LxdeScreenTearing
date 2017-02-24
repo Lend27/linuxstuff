@@ -1,0 +1,9 @@
+Fix screen tearing in LXDE with Nvidia:
+
+Install Compton
+
+Add compton.conf file  to /home/.config file
+
+Add startup command:
+compton --config /home/len/.config/compton.conf
+
