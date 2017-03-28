@@ -1,0 +1,55 @@
+#If you want to replace the default with 32 bit, 64 bit is default
+#This deletes everything in the default wine prefix 
+
+rm -fr ~/.wine 
+export WINEARCH=win32 
+export WINEPREFIX="/home/len/.wine"
+
+
+For Ubuntu Install:
+++++++++++++++++++++++++++++++++++++++++
+sudo dpkg --add-architecture i386
+sudo apt-get install ttf-mscorefonts-installer
+sudo apt-get install wine-development winetricks playonlinux steam vlc smplayer gimp ubuntu-restricted-extras ubuntu-restricted-addons
+
+
+For Arch/Manjaro Based Install:
+++++++++++++++++++++++++++++++++++++++++++++
+Make sure you enable Multilib in /etc/pacman.conf
+
+yaourt -S ttf-ms-fonts  
+sudo pacman -S wine winetricks 
+sudo pacman -S playonlinux steam vlc smplayer gimp
+sudo pacman -S lib32-libldap lib32-gnutls lib32-lcms2 
+yaourt -S gstreamer0.10-{{bad,good,ugly,base}{,-plugins},ffmpeg}   **Note:- very long install process.
+
+with nvidia in Arch/Manjaro:
+
+sudo pacman -S lib32-nvidia-utils lib32-nvidia-libgl lib32-alsa-lib lib32-alsa-plugins lib32-libpulse lib32-alsa-oss lib32-openal
+
+Steps to follow in both Ubuntu and Manjaro/Arch installs:
+
+Winecfg Libraries:
+
+Run in terminal:
+winetricks corefonts hosts winhttp wininet vcrun2015
+
+Rune winecfg in terminal:
+
+overrides winecfg libraries:
+winhttp - native, builtin
+wininet - native, builtin
+dnsapi - native, builtin (remove if Blizzard app does not run)
+rasapi32 - native        (remove if Blizzard app does not run)
+
+windows version: Windows XP
+
+works in 32 and 64 bit prefix. If you have problems in 64 bit, switch to a 32 bit wine prefix using instructions above.
+
+Check your winecfg libraries to make sure these exist at minimum:
+
+api-ms-win-crt-runtime-l1-1-0.dll
+api-ms-win-crt-stdio-l1-1-0.dll
+ucrtbase.dll
+vcruntime140.dll
+d3dcompiler_47 (add this to Libraries for Diablo 3)
