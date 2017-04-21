@@ -1,0 +1,62 @@
+Screen Tearing Fix for XFCE (insert command in Autostart:
+
+nvidia-settings --assign CurrentMetaMode="nvidia-auto-select +0+0 { ForceFullCompositionPipeline = On }"
+
+
+Gaming in Debian Linux:
+
+
+For Debian Install:
+
+Install Proprietary Graphics Drivers
+
+
+Run in Terminal:
+
+sudo dpkg --add-architecture i386
+sudo apt-get install ttf-mscorefonts-installer
+sudo apt-get install wine-development winetricks steam vlc gimp
+
+
+Additional Codecs:
+
+sudo apt-get install libavcodec-extra
+
+To fix steam:
+
+sudo apt-get install libgl1-nvidia-glx:i386
+
+
+In terminal run:
+
+winecfg
+
+windows version: Windows XP
+
+
+Works in 32 and 64 bit prefix. If you have problems in 64 bit, switch to a 32 bit wine prefix:
+
+#If you want to replace the default with 32 bit, 64 bit is default
+#This deletes everything in the default wine prefix 
+
+rm -fr ~/.wine 
+export WINEARCH=win32 
+export WINEPREFIX="/home/len/.wine"
+
+
+Winetricks commands:
+
+winetricks corefonts
+winetricks hosts
+winetricks vcrun2015
+
+
+Check your winecfg libraries to make sure these exist at minimum:
+
+api-ms-win-crt-runtime-l1-1-0.dll
+api-ms-win-crt-stdio-l1-1-0.dll
+ucrtbase.dll
+vcruntime140.dll
+d3dcompiler_47 (add this to Libraries for Diablo 3)
+
+
