@@ -1,0 +1,99 @@
+conky.config = {
+	alignment = 'top_right',
+	background = true,
+	border_width = 1,
+	cpu_avg_samples =  2,
+	default_color = '88BBFF',
+	color0  ='0077FF',
+	color1 = '888888',
+	default_outline_color = '0077FF',
+	default_shade_color = '0077FF',
+	double_buffer = true,
+	draw_borders = false,
+	draw_graph_borders = true,
+	draw_outline = false,
+	draw_shades = false,
+	gap_x = 30,
+	gap_y = 20 ,
+	maximum_width = 210,
+    minimum_height = 690,
+    maximum_width = 200,
+	max_port_monitor_connections = 64,
+	max_user_text = 16384,
+	net_avg_samples = 2,
+	no_buffers = true,
+	out_to_console = false,
+	wm_class_name = 'Conky',
+	own_window_colour = 'black',
+	own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
+	own_window_transparent = true,
+	own_window_type = 'normal',
+	own_window = true,
+	stippled_borders = 2,
+	update_interval = 2,
+	uppercase = false,
+	use_spacer = 'left',
+	use_xft = true,
+	xftalpha = 0.8,
+	--font  = 'Bitstream Vera Sans Mono:size=9',
+	font  = 'Droid Sans Mono:size=9',
+	--font  = 'monospace:size=8'
+}
+conky.text = [[
+#${font URW Gothic Book:style=Bold:size=24}${color1}${alignc}${time %H:%M:%S}
+${font League Gothic:size=36}${color1}${alignc}${time %H:%M}
+${voffset -36}${font League Gothic:size=14}${alignc}${time  %a %d %B %Y}
+${color0}${alignc}$sysname $kernel
+${alignc}${machine} @ $freq(MHz)
+${font}
+${voffset -32}
+${color0}All  :$color ${cpu cpu0}%$alignr${exec sensors | grep 'Core 0' | cut -c16-22 | sed '/^$/d'}
+${color0}${cpugraph cpu0 18,200 0077FF 0077ff}
+${color0}Core1:$color ${cpu cpu1}%$alignr${exec sensors | grep 'Core 1' | cut -c16-22 | sed '/^$/d'}
+${color0}${cpugraph cpu1 18,200 0077FF 0077ff}
+${color0}Core2:$color ${cpu cpu2}%$alignr${exec sensors | grep 'Core 2' | cut -c16-22 | sed '/^$/d'}
+${color0}${cpugraph cpu2 18,200 0077FF 0077ff}
+${color0}Core3:$color ${cpu cpu3}%$alignr${exec sensors | grep 'Core 3' | cut -c16-22 | sed '/^$/d'}
+${color0}${cpugraph cpu3 18,200 0077FF 0077ff}
+${color0}Core4:$color ${cpu cpu4}%$alignr${exec sensors | grep 'Core 4' | cut -c16-22 | sed '/^$/d'}
+${color0}${cpugraph cpu4 18,200 0077FF 0077ff}
+${color0}GPU${alignr}${execi 10 nvidia-smi -q -d TEMPERATURE | awk '/GPU Current Temp/ {print $5}'} °C
+${voffset}
+${color0}RAM: $color$memperc%$alignr$mem${color0}/${color}$memmax
+${color0}$membar
+
+${color0}Down: $color${downspeed enp0s20u2}$alignr${totaldown enp0s20u2}
+${color0}${downspeedgraph enp0s20u2 18,200 0077ff 0077ff}
+${color0}Up:   $color${upspeed enp0s20u2}$alignr${totalup enp0s20u2}
+${color0}${upspeedgraph enp0s20u2 18,200 0077FF 0077ff}
+${color0}/$alignr$color${fs_used /}${color0}/$color${fs_size /}
+${color0}${fs_bar 5,200 /}
+${color0}/home$alignr$color${fs_used /home}${color0}/$color${fs_size /home}
+${color0}${fs_bar 5,200 /home}
+${color0}/var$alignr$color${fs_used /var}${color0}/$color${fs_size /var}
+${color0}${fs_bar 5,200 /var}
+#|--SWAP
+${voffset 5}${font Droid Sans:style=Bold:size=8}SWP${font}${goto 40}Swap: ${font Droid Sans:style=Bold:size=8}${swapperc}%${font}
+${voffset 4}${offset 1}${voffset -7}${swapbar 4,200}
+${voffset 1}${goto 20}Free: ${font Droid Sans:style=Bold:size=8}$swapmax${font} ${goto 80}       Used: ${font Droid Sans:style=Bold:size=8}$swap${font}
+
+${color0}Read: $color${diskio_read}$alignr${color0}Write: $color${diskio_write}
+${color0}${diskiograph /dev/sda 18,200 0077FF 0077ff}
+
+${color0}Top:${alignr}CPU%
+$color${top name 1}$alignr${top cpu 1}
+$color${top name 2}$alignr${top cpu 2}
+$color${top name 3}$alignr${top cpu 3}
+$color${top name 4}$alignr${top cpu 4}
+$color${top name 5}$alignr${top cpu 5}
+$color${top name 6}$alignr${top cpu 6}
+$color${top name 6}$alignr${top cpu 7}
+${color0}${alignr}MEM
+$color${top_mem name 1}$alignr${top_mem mem_res 1}
+$color${top_mem name 2}$alignr${top_mem mem_res 2}
+$color${top_mem name 3}$alignr${top_mem mem_res 3}
+$color${top_mem name 4}$alignr${top_mem mem_res 4}
+$color${top_mem name 5}$alignr${top_mem mem_res 5}
+$color${top_mem name 6}$alignr${top_mem mem_res 6}
+$color${top_mem name 7}$alignr${top_mem mem_res 7}
+]]
