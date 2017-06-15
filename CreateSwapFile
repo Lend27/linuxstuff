@@ -1,0 +1,53 @@
+How to Create and Enable a Swap File in Linux
+
+1. In this example, we will create a swap file of size 2GB using the dd command as follows. 
+Note that bs=1024 means read and write up to 1024 bytes at a time and count = (1024 x 2048)MB size of the file.
+
+logon as root
+
+# dd if=/dev/zero of=/mnt/swapfile bs=1024 count=2097152
+
+Alternatively, use the fallocate command as follows.
+
+# fallocate --length 2GiB /mnt/swapfile
+
+And then set the appropriate permissions on the file; make it readable only by root user as follows.
+
+# chmod 600 /mnt/swapfile
+
+2. Now setup the file for swap space with the mkswap command.
+
+# mkswap /mnt/swapfile
+
+3. Next, enable the swap file and add it to the system as a swap file.
+
+# swapon /mnt/swapfile
+
+4. Afterwards, enable the swap file to be mounted at boot time. 
+Edit the /etc/fstab file and add the following line in it.
+
+/mnt/swapfile swap swap defaults 0 0
+
+In the line above, each field means:
+
+/mnt/swapfile – device/file name
+swap – defines device mount point
+swap – specifies the file-system type
+defaults – describes the mount options
+0 – specifies the option to be used by the dump program
+0 – specifies the fsck command option
+
+6. To set how often the swap file can be used by the kernel, 
+open the /etc/sysctl.conf file and add the line below.
+
+vm.swappiness=10
+
+Note that the default value of how frequent swap space can be used is 60 (maximum value is 100). 
+The higher the number, the more frequent swap space utilization by the kernel. 
+When the value is set to 0, the swap file will only be used if the operating system has fully utilized memory.
+
+6. Now verify the swap file was created using the swapon command.
+
+# swapon  -s
+
+# Your new swap file will be active after each reboot.
