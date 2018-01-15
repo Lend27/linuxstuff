@@ -1,8 +1,6 @@
 
 Open File Manager , show hidden files.
-open 
-
-sudo leafpad .config/openbox/lxde-rc.xml with text editor.
+open .config/openbox/lxde-rc.xml with text editor.
 
 
 

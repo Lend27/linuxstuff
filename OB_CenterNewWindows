@@ -1,0 +1,13 @@
+Tweaking Openbox or LXDE desktop:
+
+Center new windows:
+
+
+paste just above next to last line of "~/.config/openbox/lubuntu-rc.xml" file
+
+    <application type="normal">
+      <position>
+        <x>center</x>
+        <y>center</y>
+      </position>
+    </application>
